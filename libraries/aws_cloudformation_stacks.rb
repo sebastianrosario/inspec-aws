@@ -22,6 +22,7 @@ class AwsCloudformationStacks < AwsResourceBase
              .register_column(:role_arns, field: :role_arn)
              .register_column(:parent_ids, field: :parent_id)
              .register_column(:root_ids, field: :root_id)
+             .register_column(:tags, field: :tags)
              .install_filter_methods_on_resource(self, :table)
 
   def initialize(opts = {})
@@ -47,6 +48,7 @@ class AwsCloudformationStacks < AwsResourceBase
           role_arn: res.role_arn,
           parent_id: res.parent_id,
           root_id: res.root_id,
+          tags: res.tags,
         }]
       end
       break unless @api_response.next_token
