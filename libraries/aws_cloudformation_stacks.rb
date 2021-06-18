@@ -50,7 +50,7 @@ class AwsCloudformationStacks < AwsResourceBase
           root_id: res.root_id,
           tags: res.tags,
         }]
-        puts cloudformation_stacks_rows[7]
+        puts cloudformation_stacks_rows.where(tags: /"lm_app" => "aws-gds-ds-chef-role"/)
       end
       break unless @api_response.next_token
       pagination_options = { next_token: @api_response.next_token }
