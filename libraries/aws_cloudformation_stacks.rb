@@ -51,7 +51,6 @@ class AwsCloudformationStacks < AwsResourceBase
           root_id: res.root_id,
           tags: cf_tags,
         }]
-        puts cf_tags
       end
       break unless @api_response.next_token
       pagination_options = { next_token: @api_response.next_token }
