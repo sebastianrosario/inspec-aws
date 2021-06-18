@@ -18,11 +18,11 @@ class AwsCloudformationStacks < AwsResourceBase
              .register_column(:names, field: :name)
              .register_column(:creation_times, field: :creation_time)
              .register_column(:stack_ids, field: :stack_id)
+             .register_column(:tags, field: :tags)
              .register_column(:notification_arns, field: :notification_arn)
              .register_column(:role_arns, field: :role_arn)
              .register_column(:parent_ids, field: :parent_id)
              .register_column(:root_ids, field: :root_id)
-             .register_column(:tags, field: :tags)
              .install_filter_methods_on_resource(self, :table)
 
   def initialize(opts = {})
@@ -51,7 +51,7 @@ class AwsCloudformationStacks < AwsResourceBase
           root_id: res.root_id,
           tags: cf_tags,
         }]
-        puts cloudformation_stacks_rows.where(name: 'gds-ds-chef-role-non-production-ets')
+        puts cf_tags
       end
       break unless @api_response.next_token
       pagination_options = { next_token: @api_response.next_token }
