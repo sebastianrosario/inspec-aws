@@ -50,7 +50,7 @@ class AwsCloudformationStacks < AwsResourceBase
           root_id: res.root_id,
           tags: res.tags,
         }]
-        puts cloudformation_stacks_rows
+        puts cloudformation_stacks_rows.tags
       end
       break unless @api_response.next_token
       pagination_options = { next_token: @api_response.next_token }
