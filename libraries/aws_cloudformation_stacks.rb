@@ -35,9 +35,9 @@ class AwsCloudformationStacks < AwsResourceBase
     return {} if tag_list.nil? || tag_list.empty?
     tags = {}
     tag_list.each do |tag|
-      tags[tag[:key]] = tag[:value]
+      tags[tag.key] = tag.value
     end
-    return tags
+    tags
   end
 
 
@@ -51,7 +51,6 @@ class AwsCloudformationStacks < AwsResourceBase
       return cloudformation_stacks_rows if !@api_response || @api_response.empty?
       @api_response.stacks.each do |res|
 
-        # cf_tags = map_tags2(res.tags)
         cloudformation_stacks_rows+=[{
           name: res.stack_name,
           creation_time: res.creation_time,
@@ -60,7 +59,7 @@ class AwsCloudformationStacks < AwsResourceBase
           role_arn: res.role_arn,
           parent_id: res.parent_id,
           root_id: res.root_id,
-          tags: res.tags,
+          tags: map_tags2(res.tags),
         }]
         
       end
