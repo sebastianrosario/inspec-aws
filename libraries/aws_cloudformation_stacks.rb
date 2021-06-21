@@ -49,7 +49,7 @@ class AwsCloudformationStacks < AwsResourceBase
           role_arn: res.role_arn,
           parent_id: res.parent_id,
           root_id: res.root_id,
-          tags: cf_tags,
+          tags_cf: cf_tags,
         }]
         
       end
