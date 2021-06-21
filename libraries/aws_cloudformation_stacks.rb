@@ -18,7 +18,7 @@ class AwsCloudformationStacks < AwsResourceBase
              .register_column(:names, field: :name)
              .register_column(:creation_times, field: :creation_time)
              .register_column(:stack_ids, field: :stack_id)
-             .register_column(:tags, field: :tags)
+             .register_column(:tags_cf, field: :tags)
              .register_column(:notification_arns, field: :notification_arn)
              .register_column(:role_arns, field: :role_arn)
              .register_column(:parent_ids, field: :parent_id)
