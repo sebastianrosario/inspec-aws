@@ -51,6 +51,8 @@ class AwsCloudformationStacks < AwsResourceBase
           root_id: res.root_id,
           tags: cf_tags,
         }]
+
+        puts res.tags.key
         
       end
       break unless @api_response.next_token
