@@ -35,7 +35,7 @@ class AwsCloudformationStacks < AwsResourceBase
     return {} if tag_list.nil? || tag_list.empty?
     tags = {}
     tag_list.each do |tag|
-      tags[tag.key] = tag.value
+      tags[tag_list.key] = tag_list.value
     end
     tags
   end
