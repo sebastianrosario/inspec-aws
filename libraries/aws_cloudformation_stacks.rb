@@ -31,6 +31,15 @@ class AwsCloudformationStacks < AwsResourceBase
     @table = fetch_data
   end
 
+  def map_tags_test(tag_list)
+    return {} if tag_list.nil? || tag_list.empty?
+    tags = {}
+    tag_list.each do |tag|
+      tags[tag[:key]] = tag[:value]
+    end
+    tags
+  end
+
   def fetch_data
     cloudformation_stacks_rows = []
     pagination_options = {}
@@ -41,6 +50,7 @@ class AwsCloudformationStacks < AwsResourceBase
       return cloudformation_stacks_rows if !@api_response || @api_response.empty?
       @api_response.stacks.each do |res|
         cf_tags = map_tags(res.tags)
+        puts res.tags
         cloudformation_stacks_rows+=[{
           name: res.stack_name,
           creation_time: res.creation_time,
