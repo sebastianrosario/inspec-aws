@@ -18,7 +18,7 @@ class AwsCloudformationStacks < AwsResourceBase
              .register_column(:names, field: :name)
              .register_column(:creation_times, field: :creation_time)
              .register_column(:stack_ids, field: :stack_id)
-             .register_column(:tags, field: :tags)
+             .register_column(:tags2, field: :tags2)
              .register_column(:notification_arns, field: :notification_arn)
              .register_column(:role_arns, field: :role_arn)
              .register_column(:parent_ids, field: :parent_id)
@@ -59,7 +59,7 @@ class AwsCloudformationStacks < AwsResourceBase
           role_arn: res.role_arn,
           parent_id: res.parent_id,
           root_id: res.root_id,
-          tags: map_tags2(res.tags),
+          tags2: cf_tags,
         }]
 
         puts cf_tags
