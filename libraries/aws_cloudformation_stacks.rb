@@ -31,6 +31,16 @@ class AwsCloudformationStacks < AwsResourceBase
     @table = fetch_data
   end
 
+  def map_tags2(tag_list)
+    return {} if tag_list.nil? || tag_list.empty?
+    tags = {}
+    tag_list.each do |tag|
+      tags[tag.key] = tag.value
+    end
+    tags
+  end
+
+
   def fetch_data
     cloudformation_stacks_rows = []
     pagination_options = {}
@@ -49,7 +59,7 @@ class AwsCloudformationStacks < AwsResourceBase
           role_arn: res.role_arn,
           parent_id: res.parent_id,
           root_id: res.root_id,
-          tags: map_tags(res.tags),
+          tags: map_tags2(res.tags),
         }]
         
       end
