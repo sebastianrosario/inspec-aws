@@ -41,7 +41,6 @@ class AwsCloudformationStacks < AwsResourceBase
       return cloudformation_stacks_rows if !@api_response || @api_response.empty?
       @api_response.stacks.each do |res|
         cf_tags = map_tags(res.tags)
-        puts cf_tags.keys
         cloudformation_stacks_rows+=[{
           name: res.stack_name,
           creation_time: res.creation_time,
