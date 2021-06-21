@@ -18,7 +18,7 @@ class AwsCloudformationStacks < AwsResourceBase
              .register_column(:names, field: :name)
              .register_column(:creation_times, field: :creation_time)
              .register_column(:stack_ids, field: :stack_id)
-             .register_column(:tags2, field: :tags)
+             .register_column(:tags, field: :tags)
              .register_column(:notification_arns, field: :notification_arn)
              .register_column(:role_arns, field: :role_arn)
              .register_column(:parent_ids, field: :parent_id)
@@ -50,7 +50,7 @@ class AwsCloudformationStacks < AwsResourceBase
       end
       return cloudformation_stacks_rows if !@api_response || @api_response.empty?
       @api_response.stacks.each do |res|
-        
+
         cf_tags = map_tags2(res.tags)
         cloudformation_stacks_rows+=[{
           name: res.stack_name,
@@ -60,10 +60,8 @@ class AwsCloudformationStacks < AwsResourceBase
           role_arn: res.role_arn,
           parent_id: res.parent_id,
           root_id: res.root_id,
-          tags2: cf_tags,
+          tags: cf_tags,
         }]
-        puts res.stacks
-        puts cf_tags
         
       end
       break unless @api_response.next_token
