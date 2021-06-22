@@ -25,8 +25,8 @@ class AwsCloudformationStack < AwsResourceBase
       name = { stack_name: opts[:stack_name] }
       resp = @aws.cloudformation_client.describe_stacks(name)
       return nil if resp.stacks.nil? || resp.stacks.empty?
-      cf_tags = map_tags(stack.tags)
       stack = resp.stacks.first
+      cf_tags = map_tags(stack.tags)
       @stack_id = stack.stack_id
       @stack_name = stack.stack_name
       @change_set_id = stack.change_set_id
